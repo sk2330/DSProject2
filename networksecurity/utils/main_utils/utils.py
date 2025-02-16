@@ -11,7 +11,7 @@ def read_yaml_file(file_path:str)->dict:
         with open(file_path,'rb') as yaml_file:
             return yaml.safe_load(yaml_file)
     except Exception as e:
-        raise NetworkSecurityException(e,sys) from e
+        raise NetworkSecurityException(e,sys) 
     
 ###Function for writing inside the drift report(data_validation.py)
 
@@ -24,7 +24,31 @@ def write_yaml_file(file_path:str,content:object, replace:bool=False) ->None:
         with open(file_path, 'w') as file:
             yaml.dump(content, file)
     except Exception as e:
-        raise NetworkSecurityException(e, sys) from e
+        raise NetworkSecurityException(e, sys) 
+
+#### Function to save transformed data into .npy file
+def save_numpy_array_data(file_path:str, array:np.array):
+    try:
+        dir_path = os.path.dirname(file_path)
+        os.makedirs(dir_path, exist_ok=True)
+        with open(file_path, 'wb') as file_obj:
+            np.save(file_obj, array)
+    except Exception as e:
+        raise NetworkSecurityException(e, sys) 
+
+##Save any models or pickle files
+def save_object(file_path:str, obj:object)->None:
+    try:
+        logging.info("Entered the save_object method of utils file")
+        dir_path = os.path.dirname(file_path)
+        os.makedirs(dir_path, exist_ok=True)
+        with open(file_path, 'wb') as file_obj:
+            pickle.dump(obj, file_obj)
+        logging.info("Exited the save_object method of utils file")
+    except Exception as e:
+        raise NetworkSecurityException(e, sys)
+    
+
     
 
 
