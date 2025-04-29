@@ -125,8 +125,11 @@ class ModelTrainer:
         os.makedirs(model_dir_path,exist_ok=True)
 
         Network_Model=NetworkModel(preprocessor=preprocessor,model=best_model)
-        save_object(self.model_trainer_config.trained_model_file_path,obj=Network_Model)
+        save_object(self.model_trainer_config.trained_model_file_path,obj=NetworkModel)
         #model pusher
+
+        '''We can push the model anywhere we want (S3 Bucket too-using boto3)'''
+
         save_object("final_model/model.pkl",best_model)
         
 
