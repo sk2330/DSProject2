@@ -18,3 +18,4 @@ from networksecurity.entity.artifact_entity import(
     DataValidationArtifact,
     DataTransformationArtifact,
     ModelTrainerArtifact)
+
